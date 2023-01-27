@@ -23,7 +23,7 @@ class PhilipsTelevisionPlugin {
         const tvName = this.config.name;
         const tvIP = this.config.ip;
         const mac_address = this.config.mac_address;
-        const baseURL = "http://" + tvIP + ":1925/6/";
+        const baseURL = "http://" + tvIP + ":1925/1/";
         const ambilightStyles = this.config.ambilight_styles || [];
         const ambiHue = this.config.ambihue || false;
 
@@ -66,14 +66,14 @@ class PhilipsTelevisionPlugin {
                         tvService.updateCharacteristic(this.Characteristic.Active, tvPower);
                     }, 10);
 
-                    // that.log.info("TV turned off");
-                    // // Turn off TV using Standby key POST request
-                    // this.remoteButton("Standby");
+                    that.log.info("TV turned off");
+                    // Turn off TV using Standby key POST request
+                    this.remoteButton("Standby");
                 }
                 callback(null);
             })
             .on('get', (callback) => {
-                // GET request to /6/powerstate to find current state
+                // GET request to /1/powerstate to find current state
                 // if no response, .get() returns false
                 var state = 0;
                 that.get("powerstate", (result) => {
